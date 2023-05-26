@@ -1,7 +1,6 @@
 import FetchLatLong from "./FetchLatLong";
 import PrintWeatherInfo from "./PrintWeatherInfo";
 import { apiKey } from "..";
-// import apiCall from "./apiCall";
 import { useState } from "react";
 
 export default function FetchWeatherData({ WeatherInfo, setWeatherInfo }) {
@@ -24,7 +23,7 @@ export default function FetchWeatherData({ WeatherInfo, setWeatherInfo }) {
     return (
         <div className="WeatherInfo">
             <button onClick={fetchWeatherData}>Refresh!</button>
-            {/* <PrintWeatherInfo WeatherInfo={WeatherInfo} /> */}
+            <PrintWeatherInfo WeatherInfo={WeatherInfo} />
         </div>
     );
 }
