@@ -74,6 +74,23 @@ body {
     font-size: 16px;
 }
 
+.desc-para {
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1px;
+    font-style: italic;
+    padding: 20px;
+    text-align: justify;
+}
+
+.created-by {
+    letter-spacing: 3px;
+    font-weight: 700;
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
 @media only screen and (max-width: 600px) {
     .weather-info {
         margin-right: 20px;
