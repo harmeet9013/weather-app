@@ -26,7 +26,7 @@ export default function PrintWeatherInfo({ firstLaunch, WeatherInfo }) {
             >
                 <Box
                     sx={{
-                        backgroundColor: "#3C7A89",
+                        backgroundColor: "rgb(50,80,80)",
                         borderRadius: "20px",
                         padding: "20px",
                     }}
@@ -48,7 +48,7 @@ export default function PrintWeatherInfo({ firstLaunch, WeatherInfo }) {
                             Day {temp_max.toString().substring(0, 2)}&#176;
                             <ArrowDropUpIcon
                                 sx={{
-                                    color: "rgb(255, 150, 150)",
+                                    color: "rgb(255, 80, 80)",
                                     marginY: "-6px",
                                     transform: "scale(1.2)",
                                 }}
