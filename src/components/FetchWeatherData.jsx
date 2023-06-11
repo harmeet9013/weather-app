@@ -1,13 +1,17 @@
 import FetchLatLong from "./FetchLatLong";
-import PrintWeatherInfo from "./PrintWeatherInfo";
-import { apiKey } from "..";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import { apiKey } from "../main";
 import { useState } from "react";
 
-export default function FetchWeatherData({ WeatherInfo, setWeatherInfo }) {
+export default function FetchWeatherData({
+    WeatherInfo,
+    setWeatherInfo,
+    setFirstLaunch,
+}) {
     const [lat, setLat] = useState("");
     const [long, setLong] = useState("");
 
-    FetchLatLong({ lat, long, setLat, setLong });
+    FetchLatLong({ setLat, setLong });
 
     function fetchWeatherData() {
         fetch(
@@ -16,14 +20,13 @@ export default function FetchWeatherData({ WeatherInfo, setWeatherInfo }) {
             .then((res) => res.json())
             .then((result) => {
                 setWeatherInfo(result);
-                console.log(WeatherInfo)
+                setFirstLaunch(false);
             });
     }
 
     return (
         <div className="WeatherInfo">
-            <button onClick={fetchWeatherData}>Refresh!</button>
-            <PrintWeatherInfo WeatherInfo={WeatherInfo} />
+            <RefreshIcon onClick={fetchWeatherData} />
         </div>
     );
 }
