@@ -25,8 +25,12 @@ export default function FetchWeatherData({
     }
 
     return (
-        <div className="WeatherInfo">
-            <RefreshIcon onClick={fetchWeatherData} />
+        <div className="weather-info">
+            Refresh
+            <RefreshIcon
+                onClick={fetchWeatherData}
+                sx={{ marginY: "-6px", marginX: "6px" }}
+            />
         </div>
     );
 }

@@ -7,7 +7,11 @@ import WeatherIcon from "./WeatherIcon";
 
 export default function PrintWeatherInfo({ firstLaunch, WeatherInfo }) {
     if (firstLaunch) {
-        return "Click on the refresh button";
+        return (
+            <div style={{ marginRight: "20px" }}>
+                Allow location access and then click on the refresh button
+            </div>
+        );
     } else {
         const {
             main: { humidity, feels_like, temp, temp_max, temp_min },
@@ -24,27 +28,10 @@ export default function PrintWeatherInfo({ firstLaunch, WeatherInfo }) {
                     textAlign: "center",
                 }}
             >
-                <Box
-                    sx={{
-                        backgroundColor: "rgb(50,80,80)",
-                        borderRadius: "20px",
-                        padding: "20px",
-                    }}
-                >
-                    <div
-                        style={{
-                            marginTop: "-40px",
-                        }}
-                    >
+                <Box className="box-container">
+                    <div className="inner-container">
                         {/* Min and Max */}
-                        <h3
-                            style={{
-                                textAlign: "right",
-                                marginTop: "50px",
-                                marginRight: "10px",
-                                textShadow: "1px 1px 5px rgb(0, 0, 0, 0.6)",
-                            }}
-                        >
+                        <h3 className="min-max">
                             Day {temp_max.toString().substring(0, 2)}&#176;
                             <ArrowDropUpIcon
                                 sx={{
@@ -65,41 +52,19 @@ export default function PrintWeatherInfo({ firstLaunch, WeatherInfo }) {
                         </h3>
 
                         {/* Temp */}
-                        <h1
-                            style={{
-                                textAlign: "right",
-                                marginRight: "35px",
-                                marginTop: "-20px",
-                                fontSize: "70px",
-                                textShadow: "1px 1px 2px rgb(0, 0, 0, 0.2)",
-                            }}
-                        >
+                        <h1 className="temp-h1">
                             {temp.toString().substring(0, 2)}&#176; C
                         </h1>
 
                         {/* Feels Like */}
-                        <h3
-                            style={{
-                                textAlign: "right",
-                                paddingRight: "60px",
-                                marginTop: "-40px",
-                                fontSize: "16px",
-                                textShadow: "1px 1px 5px rgb(0, 0, 0, 0.6)",
-                            }}
-                        >
+                        <h3 className="feels-like-h3">
                             <i>
                                 Feels like{" "}
                                 {feels_like.toString().substring(0, 2)}&#176;
                             </i>
                         </h3>
 
-                        <div
-                            style={{
-                                textAlign: "left",
-                                marginTop: "-130px",
-                                marginBottom: "50px",
-                            }}
-                        >
+                        <div className="place-weather-div">
                             {/* Place */}
                             <h3
                                 style={{

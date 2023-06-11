@@ -8,17 +8,7 @@ export default function App() {
     const [firstLaunch, setFirstLaunch] = useState(true);
     return (
         <Container maxWidth="sm">
-            <Box
-                sx={{
-                    borderRadius: "30px",
-                    backgroundColor: "#16262E",
-                    marginTop: "200px",
-                    padding: "50px",
-                    color: "white",
-                    height: "250px",
-                    textAlign: "right"
-                }}
-            >
+            <Box className="outerbox-container">
                 <FetchWeatherData
                     WeatherInfo={WeatherInfo}
                     setWeatherInfo={setWeatherInfo}

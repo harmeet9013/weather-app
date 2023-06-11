@@ -20,13 +20,8 @@ const DirectionDisplay = ({ degree, speed, humidity }) => {
 
     const direction = getDirection(degree);
     return (
-        <div
-            style={{
-                textAlign: "left",
-                marginLeft: "20px",
-            }}
-        >
-            <h2 style={{ fontSize: "16px" }}>
+        <div className="degree-humidity">
+            <h3 className="degree-humidity-h3">
                 {direction} &#x2022;
                 <AirIcon
                     sx={{
@@ -34,15 +29,8 @@ const DirectionDisplay = ({ degree, speed, humidity }) => {
                     }}
                 />
                 {speed} km/hr
-            </h2>
-            <h3
-                style={{
-                    textAlign: "right",
-                    marginRight: "20px",
-                    marginTop: "-35px",
-                    fontSize: "16px"
-                }}
-            >
+            </h3>
+            <h3 className="degree-humidity-h3-text">
                 Humidity &#x2022; {humidity}%
             </h3>
         </div>
