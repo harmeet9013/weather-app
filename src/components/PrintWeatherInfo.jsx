@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, padding } from "@mui/system";
+import { Box } from "@mui/system";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import DisplayDegree from "./DisplayDegree";
