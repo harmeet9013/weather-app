@@ -3,7 +3,7 @@ import { Box, padding } from "@mui/system";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import DisplayDegree from "./DisplayDegree";
-import WeatherIcon from "../WeatherIcon";
+import WeatherIcon from "./WeatherIcon";
 
 export default function PrintWeatherInfo({ firstLaunch, WeatherInfo }) {
     if (firstLaunch) {
@@ -87,7 +87,10 @@ export default function PrintWeatherInfo({ firstLaunch, WeatherInfo }) {
                                 textShadow: "1px 1px 5px rgb(0, 0, 0, 0.6)",
                             }}
                         >
-                            <i>Feels like {feels_like.toString().substring(0, 2)}&#176;</i>
+                            <i>
+                                Feels like{" "}
+                                {feels_like.toString().substring(0, 2)}&#176;
+                            </i>
                         </h3>
 
                         <div
