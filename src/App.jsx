@@ -1,34 +1,26 @@
-import { useState } from "react";
-import { Box, Container } from "@mui/system";
-import FetchWeatherData from "./components/FetchWeatherData";
-import PrintWeatherInfo from "./components/PrintWeatherInfo";
+import { CssBaseline, CssVarsProvider, GlobalStyles } from "@mui/joy";
+import JoyTheme from "./components/shared/JoyTheme";
+import Header from "./components/shared/Header";
+import WeatherInfo from "./components/WeatherInfo";
+import Footer from "./components/Footer";
 
 export default function App() {
-    const [WeatherInfo, setWeatherInfo] = useState({});
-    const [firstLaunch, setFirstLaunch] = useState(true);
     return (
-        <Container maxWidth="sm">
-            <Box className="outerbox-container">
-                <FetchWeatherData
-                    WeatherInfo={WeatherInfo}
-                    setWeatherInfo={setWeatherInfo}
-                    setFirstLaunch={setFirstLaunch}
-                />
-                <PrintWeatherInfo
-                    firstLaunch={firstLaunch}
-                    WeatherInfo={WeatherInfo}
-                />
-            </Box>
-            <p className="desc-para">
-                This website is a weather app that allows users to search for
-                the current weather conditions of any city in the world. It uses
-                the OpenWeatherMap API to fetch the data and displays it in a
-                simple and elegant interface. The website is built with ReactJS,
-                a popular JavaScript library for creating user interfaces. The
-                website also features a dark mode option and a responsive design
-                that adapts to different screen sizes.
-            </p>
-            <h2 className="created-by">by Harmeet Singh</h2>
-        </Container>
+        <CssVarsProvider defaultMode="system" theme={JoyTheme}>
+            <CssBaseline />
+            <GlobalStyles
+                styles={{
+                    body: {
+                        transition: "all 0.2s ease",
+                        textAlign: "center",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    },
+                }}
+            />
+            <Header />
+            <WeatherInfo />
+            <Footer />
+        </CssVarsProvider>
     );
 }

@@ -1,92 +1,121 @@
-import React from "react";
-import { Box } from "@mui/system";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import DisplayDegree from "./DisplayDegree";
-import WeatherIcon from "./WeatherIcon";
+import { Circle, LocationCity } from "@mui/icons-material";
+import { Box, Card, Skeleton, Stack, Typography } from "@mui/joy";
 
-export default function PrintWeatherInfo({ firstLaunch, WeatherInfo }) {
-    if (firstLaunch) {
-        return (
-            <div style={{ marginRight: "20px" }}>
-                Allow location access and then click on the refresh button
-            </div>
-        );
-    } else {
-        const {
-            main: { humidity, feels_like, temp, temp_max, temp_min },
-            name,
-            weather: {
-                0: { main },
-            },
-            wind: { deg, speed },
-        } = WeatherInfo;
+export default function PrintWeatherInfo(props) {
+    const { name, region } =
+        props.weatherData === null ? {} : props.weatherData.location;
 
-        return (
-            <div
-                style={{
-                    textAlign: "center",
-                }}
+    const {
+        temp_c,
+        humidity,
+        feelslike_c,
+        condition: { text, icon } = {},
+        air_quality: { pm10 } = {},
+    } = props.weatherData === null ? {} : props.weatherData.current;
+
+    const findAQIColor = () => {
+        if (pm10 < 100) {
+            return "success";
+        } else if (pm10 > 100 && pm10 < 200) {
+            return "warning";
+        } else {
+            return "danger";
+        }
+    };
+
+    return (
+        <Stack
+            size="lg"
+            color="primary"
+            invertedColors
+            spacing={4}
+            component={Card}
+            direction="row"
+            useFlexGap
+            sx={{ maxWidth: "60ch", cursor: "default" }}
+        >
+            <Stack
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
             >
-                <Box className="box-container">
-                    <div className="inner-container">
-                        {/* Min and Max */}
-                        <h3 className="min-max">
-                            Day {temp_max.toString().substring(0, 2)}&#176;
-                            <ArrowDropUpIcon
-                                sx={{
-                                    color: "rgb(255, 80, 80)",
-                                    marginY: "-6px",
-                                    transform: "scale(1.2)",
-                                }}
-                            />
-                            &#x2022; Night {temp_min.toString().substring(0, 2)}
-                            &#176;
-                            <ArrowDropDownIcon
-                                sx={{
-                                    color: "rgb(150, 255, 150)",
-                                    marginY: "-6px",
-                                    transform: "scale(1.2)",
-                                }}
-                            />
-                        </h3>
+                <Typography level="title-lg">
+                    <Skeleton
+                        loading={props.weatherData === null ? true : false}
+                    >
+                        {`Feels Like: ${feelslike_c}`}&deg;C
+                    </Skeleton>
+                </Typography>
 
-                        {/* Temp */}
-                        <h1 className="temp-h1">
-                            {temp.toString().substring(0, 2)}&#176; C
-                        </h1>
+                {props.weatherData !== null && (
+                    <Box
+                        sx={{
+                            width: "64px",
+                            height: "64px",
+                        }}
+                        component="img"
+                        src={icon}
+                    />
+                )}
 
-                        {/* Feels Like */}
-                        <h3 className="feels-like-h3">
-                            <i>
-                                Feels like{" "}
-                                {feels_like.toString().substring(0, 2)}&#176;
-                            </i>
-                        </h3>
+                <Typography variant="h5">
+                    <Skeleton
+                        loading={props.weatherData === null ? true : false}
+                    >
+                        {`${text}`}
+                    </Skeleton>
+                </Typography>
 
-                        <div className="place-weather-div">
-                            {/* Place */}
-                            <h3
-                                style={{
-                                    textShadow: "1px 1px 5px rgb(0, 0, 0, 0.6)",
-                                }}
-                            >
-                                <i>{name}</i>
-                            </h3>
+                <Typography level="title-md">
+                    <Skeleton
+                        loading={props.weatherData === null ? true : false}
+                    >
+                        {`Humidity: ${humidity}%`}
+                    </Skeleton>
+                </Typography>
+            </Stack>
+            <Stack
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <Typography level="title-md">
+                    <Skeleton
+                        loading={props.weatherData === null ? true : false}
+                    >
+                        <LocationCity
+                            sx={{
+                                my: "-6px",
+                            }}
+                        />
+                        {` ${name}, ${region}`}
+                    </Skeleton>
+                </Typography>
 
-                            {/* Weather */}
-                            <h3
-                                style={{
-                                    textAlign: "left",
-                                }}
-                            >
-                                <WeatherIcon condition={main} />
-                            </h3>
-                        </div>
-                    </div>
-                </Box>
-                <DisplayDegree degree={deg} speed={speed} humidity={humidity} />
-            </div>
-        );
-    }
+                <Typography level="h1">
+                    <Skeleton
+                        loading={props.weatherData === null ? true : false}
+                    >
+                        {`${temp_c}`}&deg;C
+                    </Skeleton>
+                </Typography>
+
+                <Typography level="title-md">
+                    <Skeleton
+                        loading={props.weatherData === null ? true : false}
+                    >
+                        AQI:{" "}
+                        <Circle
+                            fontSize="inherit"
+                            color={findAQIColor()}
+                            sx={{
+                                my: "-3px",
+                            }}
+                        />{" "}
+                        {pm10} pm10
+                    </Skeleton>
+                </Typography>
+            </Stack>
+        </Stack>
+    );
 }

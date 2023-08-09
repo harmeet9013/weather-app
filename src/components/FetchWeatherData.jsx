@@ -1,7 +1,7 @@
 import FetchLatLong from "./FetchLatLong";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import { apiKey } from "../main";
 import { useState } from "react";
+import { API_KEY } from "./shared/credentials";
 
 export default function FetchWeatherData({
     WeatherInfo,
@@ -15,7 +15,7 @@ export default function FetchWeatherData({
 
     function fetchWeatherData() {
         fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`
         )
             .then((res) => res.json())
             .then((result) => {
